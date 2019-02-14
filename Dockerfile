@@ -1,6 +1,8 @@
 FROM centos:7
 
-LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)"
+LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
+      version.seqc="master" \
+      source.seqc="https://github.com/ambrosejcarr/seqc"
 
 ENV MINICONDA_VERSION 4.5.1
 
