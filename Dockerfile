@@ -5,14 +5,18 @@ LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
       source.seqc="https://github.com/ambrosejcarr/seqc"
 
 ENV MINICONDA_VERSION 4.5.1
+ENV DEEPTOOLS_VERSION 3.1.3
+
+ENV LC_ALL en_US.utf-8
+ENV PATH="/opt/conda/bin:${PATH}"
 
 RUN yum group install -y "Development Tools" \
     && cd \tmp \
     && curl -O https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
-    && bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -b -p $HOME/miniconda \
+    && bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -b -p /opt/conda \
     && rm -rf Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
-    && echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> ~/.bashrc \
-    && source ~/.bashrc \
+    && ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh \
+    && echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc \
     && pip install Cython \
     && pip install numpy \
     && pip install bhtsne \
@@ -21,7 +25,7 @@ RUN yum group install -y "Development Tools" \
     && sed -i 's/cairocffi>=0.8.0/cairocffi==0.9.0/' setup.py \
     && python setup.py install
 
-ENTRYPOINT ["/root/miniconda/bin/SEQC"]
+ENTRYPOINT ["SEQC"]
 CMD ["-h"]
 
 # install development tools which contains e.g. gcc
