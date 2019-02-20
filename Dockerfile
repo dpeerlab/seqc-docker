@@ -9,6 +9,9 @@ ENV MINICONDA_VERSION 4.5.1
 ENV LC_ALL en_US.utf-8
 ENV PATH="/opt/conda/bin:${PATH}"
 
+# SEQC requires this
+ENV TMPDIR "/tmp"
+
 RUN yum group install -y "Development Tools" \
     && cd \tmp \
     && curl -O https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
