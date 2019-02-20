@@ -27,13 +27,13 @@ $ SEQC start
 ```bash
 $ export TMPDIR="/tmp"
 $ SEQC run in_drop_v2 \
-  -o ./test \
-  -i s3://seqc-public/genomes/hg38_long_polya/ \
-  --upload-prefix s3://dp-lab-home/chunj/seqc-test/out-in_drop_v2/ \
-  --email jaeyoung.chun@gmail.com \
-  -g s3://dp-lab-home/chunj/seqc-test/in_drop_v2/genomic/ \
-  -b s3://dp-lab-home/chunj/seqc-test/in_drop_v2/barcode/ \
-  --barcode-files s3://seqc-public/barcodes/in_drop_v2/flat/
+    -o ./test \
+    -i s3://seqc-public/genomes/hg38_long_polya/ \
+    --upload-prefix s3://dp-lab-home/chunj/seqc-test/out-in_drop_v2/ \
+    --email jaeyoung.chun@gmail.com \
+    -g s3://dp-lab-home/chunj/seqc-test/in_drop_v2/genomic/ \
+    -b s3://dp-lab-home/chunj/seqc-test/in_drop_v2/barcode/ \
+    --barcode-files s3://seqc-public/barcodes/in_drop_v2/flat/
 ```
 
 ### 10x scRNA-seq v3
@@ -41,11 +41,11 @@ $ SEQC run in_drop_v2 \
 ```bash
 $ export TMPDIR="/tmp"
 $ SEQC run ten_x_v2 \
-  -o ./test \
-  -i s3://seqc-public/genomes/hg38_chr19/ \
-  --upload-prefix s3://dp-lab-home/chunj/seqc-test/out-ten_x_v2/ \
-  --email jaeyoung.chun@gmail.com \
-  -g s3://seqc-public/test/ten_x_v2/genomic/ \
-  -b s3://seqc-public/test/ten_x_v2/barcode/ \
-  --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/
+    -o ./test \
+    -i s3://seqc-public/genomes/hg38_chr19/ \
+    --upload-prefix s3://dp-lab-home/chunj/seqc-test/out-ten_x_v2/ \
+    --email jaeyoung.chun@gmail.com \
+    -g s3://seqc-public/test/ten_x_v2/genomic/ \
+    -b s3://seqc-public/test/ten_x_v2/barcode/ \
+    --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/
 ```
