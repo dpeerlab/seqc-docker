@@ -5,7 +5,6 @@ LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
       source.seqc="https://github.com/ambrosejcarr/seqc"
 
 ENV MINICONDA_VERSION 4.5.1
-ENV DEEPTOOLS_VERSION 3.1.3
 
 ENV LC_ALL en_US.utf-8
 ENV PATH="/opt/conda/bin:${PATH}"
