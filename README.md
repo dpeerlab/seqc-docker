@@ -29,11 +29,11 @@ Inside the container
 ```bash
 $ SEQC run in_drop_v2 \
     -i s3://seqc-public/genomes/hg38_chr19/ \
-    --barcode-files s3://seqc-public/barcodes/in_drop_v2/flat/
+    --barcode-files s3://seqc-public/barcodes/in_drop_v2/flat/ \
     -g s3://dp-lab-home/chunj/seqc-test/in_drop_v2/genomic/ \
     -b s3://dp-lab-home/chunj/seqc-test/in_drop_v2/barcode/ \
     --upload-prefix s3://dp-lab-home/chunj/seqc-test/in_drop_v2/seqc-results/ \
-    -o ./test \
+    -o test \
     --email jaeyoung.chun@gmail.com
 ```
 
@@ -42,12 +42,12 @@ $ SEQC run in_drop_v2 \
 ```bash
 $ SEQC run ten_x_v2 \
     -i s3://seqc-public/genomes/hg38_long_polya/ \
-    --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/
+    --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/ \
     -g s3://seqc-public/test/ten_x_v2/genomic/ \
     -b s3://seqc-public/test/ten_x_v2/barcode/ \
-    --upload-prefix s3://dp-lab-home/chunj/seqc-test/out-ten_x_v2/seqc-results/ \
-    -o ./test \
-    --email jaeyoung.chun@gmail.com \
+    --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v2/seqc-results/ \
+    -o test \
+    --email jaeyoung.chun@gmail.com
 ```
 
 ### Local Unit Testing
