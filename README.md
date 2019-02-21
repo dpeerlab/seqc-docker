@@ -28,25 +28,25 @@ Inside the container
 
 ```bash
 $ SEQC run in_drop_v2 \
-    -i s3://seqc-public/genomes/hg38_chr19/ \
+    --index s3://seqc-public/genomes/hg38_chr19/ \
     --barcode-files s3://seqc-public/barcodes/in_drop_v2/flat/ \
-    -g s3://dp-lab-home/chunj/seqc-test/in_drop_v2/genomic/ \
-    -b s3://dp-lab-home/chunj/seqc-test/in_drop_v2/barcode/ \
+    --genomic-fastq s3://dp-lab-home/chunj/seqc-test/in_drop_v2/genomic/ \
+    --barcode-fastq s3://dp-lab-home/chunj/seqc-test/in_drop_v2/barcode/ \
     --upload-prefix s3://dp-lab-home/chunj/seqc-test/in_drop_v2/seqc-results/ \
-    -o test \
+    --output-prefix test \
     --email jaeyoung.chun@gmail.com
 ```
 
 ### 10x v2
 
 ```bash
-$ SEQC run ten_x_v2 \
-    -i s3://seqc-public/genomes/hg38_long_polya/ \
+$ SEQC SEQC run ten_x_v2 \
+    --index s3://seqc-public/genomes/hg38_long_polya/ \
     --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/ \
-    -g s3://seqc-public/test/ten_x_v2/genomic/ \
-    -b s3://seqc-public/test/ten_x_v2/barcode/ \
+    --genomic-fastq s3://seqc-public/test/ten_x_v2/genomic/ \
+    --barcode-fastq s3://seqc-public/test/ten_x_v2/barcode/ \
     --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v2/seqc-results/ \
-    -o test \
+    --output-prefix test \
     --email jaeyoung.chun@gmail.com
 ```
 
