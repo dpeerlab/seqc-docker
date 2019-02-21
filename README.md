@@ -60,7 +60,7 @@ $ docker run \
     seqc
 ```
 
-On you're inside the container, run the following command:
+Once you're inside the container, run the following command:
 
 ```bash
 $ nose2 seqc.test.TestSEQC.test_local
