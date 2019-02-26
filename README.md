@@ -40,7 +40,7 @@ $ SEQC run in_drop_v2 \
 ### 10x v2
 
 ```bash
-$ SEQC SEQC run ten_x_v2 \
+$ SEQC run ten_x_v2 \
     --index s3://seqc-public/genomes/hg38_long_polya/ \
     --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/ \
     --genomic-fastq s3://seqc-public/test/ten_x_v2/genomic/ \
