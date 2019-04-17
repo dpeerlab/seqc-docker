@@ -37,7 +37,7 @@ $ SEQC run in_drop_v2 \
     --email jaeyoung.chun@gmail.com
 ```
 
-### 10x v2
+### 10x v2 Chemistry
 
 ```bash
 $ SEQC run ten_x_v2 \
@@ -46,6 +46,19 @@ $ SEQC run ten_x_v2 \
     --genomic-fastq s3://seqc-public/test/ten_x_v2/genomic/ \
     --barcode-fastq s3://seqc-public/test/ten_x_v2/barcode/ \
     --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v2/seqc-results/ \
+    --output-prefix test \
+    --email jaeyoung.chun@gmail.com
+```
+
+### 10x v3 Chemsitry
+
+```bash
+$ SEQC run ten_x_v3 \
+    --index s3://seqc-public/genomes/hg38_long_polya/ \
+    --barcode-files s3://seqc-public/barcodes/ten_x_v3/flat/ \
+    --genomic-fastq s3://dp-lab-home/chunj/seqc-test/ten_x_v3/genomic/ \
+    --barcode-fastq s3://dp-lab-home/chunj/seqc-test/ten_x_v3/barcode/ \
+    --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v3/seqc-results/ \
     --output-prefix test \
     --email jaeyoung.chun@gmail.com
 ```
