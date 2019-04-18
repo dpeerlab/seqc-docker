@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker_img_name="hisplan/seqc:0.2.3-alpha.2"
+
 usage()
 {
 cat << EOF
@@ -28,4 +30,4 @@ docker run \
     -e AWS_RSA_KEY=/root/${filename_ec2_keypair} \
     --mount source=${path_ec2_keypair},target=/root/${filename_ec2_keypair},type=bind \
     --mount source=~/.aws,target=/root/.aws,type=bind \
-    seqc ${command} $*
+    ${docker_img_name} ${command} $*
