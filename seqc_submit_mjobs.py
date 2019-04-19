@@ -23,7 +23,7 @@ def run_command(cmd, path_log):
 
     with open(path_log, "wb") as flog:
         process = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False
         )
 
         for line in iter(process.stdout.readline, b''):
