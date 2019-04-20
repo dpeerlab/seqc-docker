@@ -1,14 +1,14 @@
 FROM centos:7
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
-      version.seqc="0.2.3-alpha.3" \
+      version.seqc="0.2.3-alpha.4" \
       version.star="2.5.3a" \
       version.samtools="1.3.1" \
-      source.seqc="https://github.com/hisplan/seqc/releases/tag/v0.2.3-alpha.3" \
+      source.seqc="https://github.com/hisplan/seqc/releases/tag/v0.2.3-alpha.4" \
       source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.3.1"
 
-ENV SEQC_VERSION 0.2.3-alpha.3
+ENV SEQC_VERSION 0.2.3-alpha.4
 ENV MINICONDA_VERSION 4.5.1
 ENV STAR_VERSION 2.5.3a
 ENV SAMTOOLS_VERSION 1.3.1
@@ -25,7 +25,8 @@ RUN yum group install -y "Development Tools" \
     && bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -b -p /opt/conda \
     && rm -rf Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
     && ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh \
-    && echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc
+    && echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc \
+    && pip install --upgrade pip
 
 RUN cd /tmp \
     && curl -OL https://github.com/alexdobin/STAR/archive/${STAR_VERSION}.tar.gz \
@@ -45,6 +46,7 @@ RUN pip install git+https://github.com/jacoblevine/phenograph.git
 
 RUN cd /opt \
     && yum install -y cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel pigz \
+    && yum install -y mutt \
     && pip install Cython \
     && pip install numpy \
     && pip install bhtsne \
@@ -52,7 +54,9 @@ RUN cd /opt \
     && tar xvzf v${SEQC_VERSION}.tar.gz \
     && rm -rf v${SEQC_VERSION}.tar.gz \
     && cd seqc-${SEQC_VERSION} \
-    && pip install .
+    && pip install . \
+    && cp `python -c "import site; print(site.getsitepackages()[0])"`/matplotlib/mpl-data/fonts/ttf/DejaVuS* /usr/share/fonts/ \
+    && fc-cache -fv
 
 RUN rm -rf /tmp/*
 
