@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-version="0.2.3-alpha.3"
+version="0.2.3-alpha.4"
 s3_dest="s3://dp-lab-home/software"
 
 path_workdir=`mktemp -d`
