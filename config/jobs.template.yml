@@ -1,6 +1,6 @@
 jobs:
   - job: 1
-    ami-id: ami-070e0209a62c324cf
+    ami-id: ${PLACE_AMI_ID_HERE}
     platform: ten_x_v2
     user-tags: "Job:1,Project:00000,Sample:DEV_IGO_00001"
     index: s3://seqc-public/genomes/hg38_long_polya/
@@ -12,7 +12,7 @@ jobs:
     email: jaeyoung.chun@gmail.com
     star-args: "runRNGseed=0"
   - job: 2
-    ami-id: ami-070e0209a62c324cf
+    ami-id: ${PLACE_AMI_ID_HERE}
     platform: ten_x_v2
     user-tags: "Job:2,Project:00000,Sample:DEV_IGO_00002"
     index: s3://seqc-public/genomes/hg38_long_polya/
