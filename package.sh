@@ -1,12 +1,27 @@
 #!/bin/bash -e
 
-version="0.2.3-alpha.4"
+hub="hisplan"
+version="0.2.3-alpha.5"
+
+#
+# tag it and push it to docker hub
+#
+
+docker login
+docker tag seqc ${hub}/seqc:${version}
+docker push ${hub}/seqc:${version}
+
+
+#
+# package it and push it to AWS S3
+#
+
 s3_dest="s3://dp-lab-home/software"
 
 path_workdir=`mktemp -d`
 
 tar cvzf ${path_workdir}/seqc-${version}.tar.gz \
-    seqc-submit.sh seqc_submit_mjobs.py config/jobs.template.yml
+    seqc-submit.sh seqc_submit_mjobs.py show-ami-list.sh config/jobs.template.yml
 
 aws s3 cp ${path_workdir}/seqc-${version}.tar.gz ${s3_dest}/
 
