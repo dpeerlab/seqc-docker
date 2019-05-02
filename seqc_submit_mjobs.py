@@ -80,14 +80,13 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name):
 
     for input in inputs['jobs']:
 
-        job_number = input["job"]
+        job_name = input["job"]
 
         platform, params = translate_params_yaml_to_list(input)        
 
         path_log = os.path.join(
-            "./logs/", "{0}.{1:03d}.log".format(
-                os.path.splitext(os.path.basename(path_yaml_input))[0],
-                job_number
+            "./logs/", "{}.log".format(
+                job_name
             )
         )
 
