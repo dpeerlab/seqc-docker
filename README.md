@@ -6,12 +6,40 @@
 $ docker build -t seqc .
 ```
 
-## Running
+## Running Examples
+
+```bash
+$ ./seqc-submit.sh ~/dpeerlab-chunj.pem run ten_x_v2 \
+    --index s3://seqc-public/genomes/hg38_long_polya/ \
+    --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/ \
+    --genomic-fastq s3://seqc-public/test/ten_x_v2/genomic/ \
+    --barcode-fastq s3://seqc-public/test/ten_x_v2/barcode/ \
+    --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v2/seqc-results/ \
+    --output-prefix test \
+    --ami ami-05fd54e8d80f2665f \
+    --email jaeyoung.chun@gmail.com
+```
+
+## Checking Progress
+
+Run the following command to see the log message in real time:
+
+```bash
+$ ./seqc-progress.sh ~/dpeerlab-chunj.pem i-0fbffa334be875092
+```
+
+If the instance has already been stopped/terminated, the behavior is unknown or you will get an error message something like below:
+
+```
+socket.gaierror: [Errno -2] Name or service not known
+```
+
+## Debugging through Console
 
 Specify your own AWS EC2 keypair file for the `-k` parameter:
 
 ```bash
-$ ./console.sh -k ~/dpeerlab-chunj.pem
+$ ./console.sh -k ~/dpeerlab-chunj.pem -d
 ```
 
 Inside the container, run the following command to spawn a new EC2 instance:
