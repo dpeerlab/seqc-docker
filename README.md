@@ -28,10 +28,16 @@ Run the following command to see the log message in real time:
 $ ./seqc-progress.sh ~/dpeerlab-chunj.pem i-0fbffa334be875092
 ```
 
-If the instance has already been stopped/terminated, the behavior is unknown or you will get an error message something like below:
+If the instance has already been stopped/terminated, you will see:
 
 ```
 socket.gaierror: [Errno -2] Name or service not known
+```
+
+If the instance is not fully up and running, you will see:
+
+```
+ChildProcessError: cat: ./seqc_log.txt: No such file or directory
 ```
 
 ## Debugging through Console
