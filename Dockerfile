@@ -1,14 +1,14 @@
 FROM centos:7
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
-      version.seqc="0.2.3-alpha.5" \
+      version.seqc="0.2.4" \
       version.star="2.5.3a" \
       version.samtools="1.3.1" \
-      source.seqc="https://github.com/hisplan/seqc/releases/tag/v0.2.3-alpha.5" \
+      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.4" \
       source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.3.1"
 
-ENV SEQC_VERSION 0.2.3-alpha.5
+ENV SEQC_VERSION 0.2.4
 ENV MINICONDA_VERSION 4.5.1
 ENV STAR_VERSION 2.5.3a
 ENV SAMTOOLS_VERSION 1.3.1
@@ -41,16 +41,13 @@ RUN cd /tmp \
     && make \
     && mv samtools /usr/bin/
 
-# fixme: contact the author to release a tag and install a specific version
-RUN pip install git+https://github.com/jacoblevine/phenograph.git
-
 RUN cd /opt \
     && yum install -y cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel pigz \
     && yum install -y mutt \
     && pip install Cython \
     && pip install numpy \
     && pip install bhtsne \
-    && curl -OL https://github.com/hisplan/seqc/archive/v${SEQC_VERSION}.tar.gz \
+    && curl -OL https://github.com/dpeerlab/seqc/archive/v${SEQC_VERSION}.tar.gz \
     && tar xvzf v${SEQC_VERSION}.tar.gz \
     && rm -rf v${SEQC_VERSION}.tar.gz \
     && cd seqc-${SEQC_VERSION} \
