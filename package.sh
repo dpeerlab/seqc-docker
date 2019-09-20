@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 hub="hisplan"
-version="0.2.3-alpha.5"
+version="0.2.4"
 
 #
 # tag it and push it to docker hub
