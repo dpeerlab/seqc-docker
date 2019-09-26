@@ -64,6 +64,27 @@ def translate_params_yaml_to_list(job):
         # so that python argparse can parse properly
         params.append("--{}".format(key))
 
+        # `user-tags` requires a special treatment
+        if key == "user-tags":
+            if type(value) == str:
+                # backward compatibility
+                # if it's a string type, use as is
+                # e.g. Job:2,Project:00000,Sample:DEV_IGO_00002
+                params.append(value)
+            elif type(value) == dict:
+                # if it's a dictionary type, convert to a comma-separated key-value pair string
+                # e.g.
+                # user-tags:
+                #   job: 1
+                #   Project: Project_10178
+                #   Sample: 1454_080119_CAFPDPN_P174_IGO_10178_21
+                #
+                # --> Job:1,Project:Project_10178,Sample:1454_080119_CAFPDPN_P174_IGO_10178_21
+                params.append(
+                    ",".join(list(f"{k}:{v}" for k, v in value.items()))
+                )
+            continue
+
         # to support those arguments that do not have any values
         # e.g. `--no-filter-low-coverage`
         if value:
@@ -82,7 +103,7 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name):
 
         job_name = input["job"]
 
-        platform, params = translate_params_yaml_to_list(input)        
+        platform, params = translate_params_yaml_to_list(input)
 
         path_log = os.path.join(
             "./logs/", "{}.log".format(
