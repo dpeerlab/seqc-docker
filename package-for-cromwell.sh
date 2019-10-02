@@ -2,7 +2,9 @@
 
 hub="hisplan"
 image_name="cromwell-seqc"
-version="0.2.4"
+version="0.2.5"
+
+echo "Building ${image_name}:${version}..."
 
 # hack: comment the ENTRYPOINT and CMD lines
 # https://github.com/broadinstitute/cromwell/issues/2461
@@ -14,6 +16,8 @@ cat Dockerfile.cromwell
 
 # build it
 docker build -t ${image_name}:${version} -f Dockerfile.cromwell .
+
+echo "Packaging ${hub}/${image_name}:${version}..."
 
 #
 # tag it and push it to docker hub

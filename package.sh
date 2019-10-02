@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
 hub="hisplan"
-version="0.2.4"
+version="0.2.5"
+
+echo "Packaging ${hub}/seqc:${version}..."
 
 #
 # tag it and push it to docker hub

@@ -46,6 +46,22 @@ def submit_job(path_ec2_keypair, platform, params, path_log):
     run_command(cmd, path_log)
 
 
+def pretty_print(path_ec2_keypair, platform, params):
+
+    print("SEQC run {} \\".format(platform))
+
+    # add the rest of the parameters
+    line = ""
+    for param in params:
+        if str(param).startswith("--"):
+            line += "  " + param
+        else:
+            line += " {} \\\n".format(param)
+
+    # remove the last backslash
+    print(line[:-2] + "\n")
+
+
 def translate_params_yaml_to_list(job):
 
     platform = None
@@ -93,7 +109,7 @@ def translate_params_yaml_to_list(job):
     return platform, params
 
 
-def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name):
+def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name, is_dry_run):
 
     inputs = yaml.load(open(path_yaml_input))
 
@@ -111,8 +127,15 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name):
             )
         )
 
-        print(path_log)
-        print(yaml.dump(input, default_flow_style=False))
+        pretty_print(
+            path_ec2_keypair,
+            platform,
+            params
+        )
+
+        # skip if dry run
+        if is_dry_run:
+            continue
 
         # submit job
         submit_job(
@@ -153,6 +176,13 @@ def parse_arguments():
         required=False
     )
 
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        dest="is_dry_run",
+        help="Dry run (i.e. don't actually submit the job)"
+    )
+
     # parse arguments
     params = parser.parse_args()
 
@@ -172,5 +202,6 @@ if __name__ == "__main__":
     main(
         params.path_yaml_input,
         params.path_ec2_keypair,
-        params.ec2_keypair_name
+        params.ec2_keypair_name,
+        params.is_dry_run
     )
