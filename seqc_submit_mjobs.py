@@ -182,7 +182,8 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name, is_dry_run):
         # skip if dry run
         if is_dry_run:
             logger.info(
-                "No actual job submission because we're in dry run mode")
+                "No actual job submission because we're in dry run mode"
+            )
             continue
 
         # submit job
