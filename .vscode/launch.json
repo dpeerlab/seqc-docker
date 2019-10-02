@@ -8,11 +8,12 @@
             "name": "Python: seqc_submit_mjobs",
             "type": "python",
             "request": "launch",
-            "program": "seqc_submit_mjobs.py",
+            "program": "${workspaceFolder}/seqc_submit_mjobs.py",
             "console": "integratedTerminal",
             "args": [
                 "--config", "config/jobs.template.yml",
-                "--pem", "~/dpeerlab-chunj.pem"
+                "--pem", "~/dpeerlab-chunj.pem",
+                "--dry-run"
             ]
         }
     ]
