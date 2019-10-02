@@ -198,7 +198,7 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name, is_dry_run):
 
 def parse_arguments():
 
-    parser = argparse.ArgumentParser(description='submit_jobs')
+    parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--config", "-c",
