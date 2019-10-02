@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/seqc_submit_mjobs.py",
             "console": "integratedTerminal",
             "args": [
-                "--config", "config/jobs.template.yml",
+                "--config", "config/jobs.dev.yml",
                 "--pem", "~/dpeerlab-chunj.pem",
                 "--dry-run"
             ]
