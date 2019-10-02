@@ -6,6 +6,19 @@ import os
 import sys
 import json
 import subprocess
+import logging
+
+
+logger = logging.getLogger()
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("submit.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
 
 
 def run_command_detached(cmd):
@@ -21,15 +34,18 @@ def run_command_detached(cmd):
 def run_command(cmd, path_log):
     "run a command and return (stdout, stderr, exit code)"
 
-    with open(path_log, "wb") as flog:
+    with open(path_log, "wt") as flog:
         process = subprocess.Popen(
             cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=False
         )
 
         for line in iter(process.stdout.readline, b''):
-            sys.stdout.write(line.decode(sys.stdout.encoding))
+            line = line.decode(sys.stdout.encoding).rstrip() + "\r"
+            # write to individual job log
             flog.write(line)
             flog.flush()
+            # write to submit.log
+            logger.info(line)
 
 
 def submit_job(path_ec2_keypair, platform, params, path_log):
@@ -48,18 +64,41 @@ def submit_job(path_ec2_keypair, platform, params, path_log):
 
 def pretty_print(path_ec2_keypair, platform, params):
 
-    print("SEQC run {} \\".format(platform))
+    # e.g.
+    # SEQC run ten_x_v2 \ \
+    # --ami-id ${PLACE_AMI_ID_HERE} \
+    # --user-tags Job:2,Project:10178,Sample:DEV_IGO_00002 \
+    # --filter-mode snRNA-seq \
+    # --max-insert-size 2304700 \
+    # --index s3://seqc-public/genomes/hg38_long_polya/ \
+    # --barcode-files s3://seqc-public/barcodes/ten_x_v2/flat/ \
+    # --genomic-fastq s3://seqc-public/test/ten_x_v2/genomic/ \
+    # --barcode-fastq s3://seqc-public/test/ten_x_v2/barcode/ \
+    # --upload-prefix s3://dp-lab-home/chunj/seqc-test/ten_x_v2/seqc-results/ \
+    # --output-prefix test2 \
+    # --email jaeyoung.chun@gmail.com \
+    # --star-args runRNGseed=0 \
+    # --no-terminate
 
-    # add the rest of the parameters
-    line = ""
+    lines = list()
+
+    lines.append("SEQC run {} \\".format(platform))
+
+    tmp = ""
     for param in params:
         if str(param).startswith("--"):
-            line += "  " + param
+            if tmp:
+                lines.append(tmp)
+                tmp = ""
+            tmp = "  {}".format(param)
         else:
-            line += " {} \\\n".format(param)
+            tmp += " {}".format(param)
 
-    # remove the last backslash
-    print(line[:-2] + "\n")
+    # append those that are not added yet
+    if tmp:
+        lines.append(tmp)
+
+    return " \\\n".join(lines)
 
 
 def translate_params_yaml_to_list(job):
@@ -131,25 +170,30 @@ def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name, is_dry_run):
             )
         )
 
-        pretty_print(
-            path_ec2_keypair,
-            platform,
-            params
+        logger.info(
+            f"JOB NAME={job_name}, LOG FILE={path_log}\n" +
+            pretty_print(
+                path_ec2_keypair,
+                platform,
+                params
+            )
         )
 
         # skip if dry run
         if is_dry_run:
+            logger.info(
+                "No actual job submission because we're in dry run mode")
             continue
 
         # submit job
+        logger.info("Submitting a job...")
+
         submit_job(
             path_ec2_keypair,
             platform,
             params,
             path_log
         )
-
-        print("--")
 
 
 def parse_arguments():
@@ -203,9 +247,13 @@ if __name__ == "__main__":
 
     params = parse_arguments()
 
+    logger.info("Starting...")
+
     main(
         params.path_yaml_input,
         params.path_ec2_keypair,
         params.ec2_keypair_name,
         params.is_dry_run
     )
+
+    logger.info("DONE.")
