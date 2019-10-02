@@ -106,6 +106,10 @@ def translate_params_yaml_to_list(job):
         if value:
             params.append(value)
 
+    # convert each in params to string
+    # so that later we can just pass to subprocess.Popen
+    params = list(map(lambda x: str(x), params))
+
     return platform, params
 
 
