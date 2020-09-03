@@ -65,7 +65,7 @@ def submit_job(path_ec2_keypair, platform, params, path_log):
 def pretty_print(path_ec2_keypair, platform, params):
 
     # e.g.
-    # SEQC run ten_x_v2 \ \
+    # SEQC run ten_x_v2 \
     # --ami-id ${PLACE_AMI_ID_HERE} \
     # --user-tags Job:2,Project:10178,Sample:DEV_IGO_00002 \
     # --filter-mode snRNA-seq \
@@ -82,7 +82,7 @@ def pretty_print(path_ec2_keypair, platform, params):
 
     lines = list()
 
-    lines.append("SEQC run {} \\".format(platform))
+    lines.append("SEQC run {}".format(platform))
 
     tmp = ""
     for param in params:
