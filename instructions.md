@@ -1,6 +1,6 @@
 # Instructions
 
-_** This instruction applies to SEQC v0.2.5_
+_** This instruction applies to SEQC v0.2.6-rc6_
 
 ## Prerequisite
 
@@ -35,9 +35,9 @@ _Note that the steps described here are only tested on Mac._
 Run the following commands from your Bash terminal:
 
 ```bash
-mkdir -p seqc-0.2.5
-tar xzf seqc-0.2.5.tar.gz -C seqc-0.2.5
-cd seqc-0.2.5
+mkdir -p seqc-0.2.6-rc6
+tar xzf seqc-0.2.6-rc6.tar.gz -C seqc-0.2.6-rc6
+cd seqc-0.2.6-rc6
 ```
 
 If you run `tree`, you should see something like this:

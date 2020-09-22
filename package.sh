@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 hub="hisplan"
-version="0.2.5"
+version="0.2.6-rc6"
 
 echo "Packaging ${hub}/seqc:${version}..."
 
