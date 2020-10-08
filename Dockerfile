@@ -3,12 +3,12 @@ FROM centos:7
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
       version.seqc="0.2.6" \
       version.star="2.5.3a" \
-      version.samtools="1.3.1" \
+      version.samtools="1.10" \
       source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.6" \
       source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.10"
 
-ENV SEQC_VERSION 0.2.6-rc6
+ENV SEQC_VERSION 0.2.6
 ENV MINICONDA_VERSION 4.8.3
 ENV STAR_VERSION 2.5.3a
 ENV SAMTOOLS_VERSION 1.10
@@ -48,7 +48,7 @@ RUN cd /opt \
     && pip install Cython \
     && pip install numpy \
     && pip install bhtsne \
-    && curl -OL https://github.com/hisplan/seqc/archive/v${SEQC_VERSION}.tar.gz \
+    && curl -OL https://github.com/dpeerlab/seqc/archive/v${SEQC_VERSION}.tar.gz \
     && tar xvzf v${SEQC_VERSION}.tar.gz \
     && rm -rf v${SEQC_VERSION}.tar.gz \
     && cd seqc-${SEQC_VERSION} \
