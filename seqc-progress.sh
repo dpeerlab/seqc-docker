@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker_img_name="hisplan/seqc:0.2.6-rc6"
+docker_img_name="hisplan/seqc:0.2.6"
 
 usage()
 {

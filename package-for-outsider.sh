@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="0.2.6-rc6"
+version="0.2.6"
 
 echo "Packaging seqc:${version}..."
 

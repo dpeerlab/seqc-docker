@@ -1,17 +1,17 @@
 FROM centos:7
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
-      version.seqc="0.2.5" \
+      version.seqc="0.2.6" \
       version.star="2.5.3a" \
-      version.samtools="1.3.1" \
-      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.5" \
+      version.samtools="1.10" \
+      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.6" \
       source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
-      source.samtools="https://github.com/samtools/samtools/releases/tag/1.3.1"
+      source.samtools="https://github.com/samtools/samtools/releases/tag/1.10"
 
-ENV SEQC_VERSION 0.2.5
-ENV MINICONDA_VERSION 4.5.1
+ENV SEQC_VERSION 0.2.6
+ENV MINICONDA_VERSION 4.8.3
 ENV STAR_VERSION 2.5.3a
-ENV SAMTOOLS_VERSION 1.3.1
+ENV SAMTOOLS_VERSION 1.10
 
 ENV LC_ALL en_US.utf-8
 ENV PATH="/opt/conda/bin:${PATH}"
@@ -21,9 +21,9 @@ ENV TMPDIR "/tmp"
 
 RUN yum group install -y "Development Tools" \
     && cd /tmp \
-    && curl -O https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
-    && bash Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -b -p /opt/conda \
-    && rm -rf Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh \
+    && curl -OL https://repo.anaconda.com/miniconda/Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh \
+    && bash Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh -b -p /opt/conda \
+    && rm -rf Miniconda3-py37_${MINICONDA_VERSION}-Linux-x86_64.sh \
     && ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh \
     && echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc \
     && pip install --upgrade pip
@@ -34,12 +34,13 @@ RUN cd /tmp \
     && cp STAR-${STAR_VERSION}/bin/Linux_x86_64_static/STAR /usr/bin/
 
 RUN cd /tmp \
-    && yum install -y zlib-devel ncurses-devel \
+    && yum install -y zlib-devel ncurses-devel bzip2-devel xz-devel \
     && curl -OL https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 \
     && tar xjvf samtools-${SAMTOOLS_VERSION}.tar.bz2 \
     && cd samtools-${SAMTOOLS_VERSION} \
+    && ./configure --prefix=/usr/local \
     && make \
-    && mv samtools /usr/bin/
+    && make install
 
 RUN cd /opt \
     && yum install -y cairo cairo-devel cairomm-devel libjpeg-turbo-devel pango pango-devel pangomm pangomm-devel pigz \
