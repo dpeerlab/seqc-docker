@@ -1,14 +1,14 @@
 FROM centos:7
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
-      version.seqc="0.2.6" \
+      version.seqc="0.2.7" \
       version.star="2.5.3a" \
       version.samtools="1.10" \
-      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.6" \
+      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.7" \
       source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.10"
 
-ENV SEQC_VERSION 0.2.6
+ENV SEQC_VERSION 0.2.7
 ENV MINICONDA_VERSION 4.8.3
 ENV STAR_VERSION 2.5.3a
 ENV SAMTOOLS_VERSION 1.10
