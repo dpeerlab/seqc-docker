@@ -1,16 +1,16 @@
 FROM centos:7
 
 LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
-      version.seqc="0.2.7" \
-      version.star="2.5.3a" \
+      version.seqc="0.2.8" \
+      version.star="2.7.6a" \
       version.samtools="1.10" \
-      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.7" \
-      source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
+      source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.8" \
+      source.star="https://github.com/alexdobin/STAR/releases/tag/2.7.6a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.10"
 
-ENV SEQC_VERSION 0.2.7
+ENV SEQC_VERSION 0.2.8
 ENV MINICONDA_VERSION 4.8.3
-ENV STAR_VERSION 2.5.3a
+ENV STAR_VERSION 2.7.6a
 ENV SAMTOOLS_VERSION 1.10
 
 ENV LC_ALL en_US.utf-8
