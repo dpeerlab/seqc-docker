@@ -25,7 +25,7 @@ jobs:
       Sample: DEV_IGO_00002
     filter-mode: snRNA-seq
     max-insert-size: 2304700      
-    index: s3://seqc-public/genomes/hg38_long_polya/
+    index: s3://seqc-public/genomes/hg38_long_polya_snRNAseq/
     barcode-files: s3://seqc-public/barcodes/ten_x_v2/flat/
     genomic-fastq: s3://seqc-public/test/ten_x_v2/genomic/
     barcode-fastq: s3://seqc-public/test/ten_x_v2/barcode/
