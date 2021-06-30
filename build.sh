@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker build -t seqc .
+source version.sh
+
+docker build -t seqc:${version} .

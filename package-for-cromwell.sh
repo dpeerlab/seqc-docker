@@ -1,8 +1,9 @@
 #!/bin/bash -e
 
+source version.sh
+
 hub="hisplan"
 image_name="cromwell-seqc"
-version="0.2.8"
 
 echo "Building ${image_name}:${version}..."
 

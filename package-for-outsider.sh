@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="0.2.8"
+source version.sh
 
 echo "Packaging seqc:${version}..."
 

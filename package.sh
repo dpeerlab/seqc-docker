@@ -1,7 +1,8 @@
 #!/bin/bash -e
 
+source version.sh
+
 hub="hisplan"
-version="0.2.8"
 
 echo "Packaging ${hub}/seqc:${version}..."
 
@@ -10,7 +11,7 @@ echo "Packaging ${hub}/seqc:${version}..."
 #
 
 docker login
-docker tag seqc ${hub}/seqc:${version}
+docker tag seqc:${version} ${hub}/seqc:${version}
 docker push ${hub}/seqc:${version}
 
 
@@ -34,7 +35,7 @@ echo "DONE."
 EOF
 
 tar cvzf ${path_workdir}/seqc-${version}.tar.gz \
-    seqc-submit.sh seqc-progress.sh seqc_submit_mjobs.py show-ami-list.sh config/jobs.template.yml
+    seqc-submit.sh seqc-progress.sh seqc_submit_mjobs.py show-ami-list.sh config/jobs.template.yml version.sh
 
 aws s3 cp ${path_workdir}/seqc-${version}.tar.gz ${s3_dest}/
 aws s3 cp ${path_workdir}/install.sh ${s3_dest}/install-seqc-${version}.sh

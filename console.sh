@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source version.sh
+
 usage()
 {
 cat << EOF
@@ -34,4 +36,4 @@ docker run \
     --mount source=${path_ec2_keypair},target=/root/${filename_ec2_keypair},type=bind \
     --mount source=~/.aws,target=/root/.aws,type=bind \
     --entrypoint bash \
-    seqc
+    seqc:${version}
