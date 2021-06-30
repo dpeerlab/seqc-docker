@@ -154,7 +154,7 @@ def translate_params_yaml_to_list(job):
 
 def main(path_yaml_input, path_ec2_keypair, ec2_keypair_name, is_dry_run):
 
-    inputs = yaml.load(open(path_yaml_input))
+    inputs = yaml.safe_load(open(path_yaml_input))
 
     os.makedirs("logs", exist_ok=True)
 
