@@ -8,9 +8,13 @@ Dockerized SEQC
 
 Install [Docker](https://www.docker.com/get-started) version 2 (Engine version 18+). You need at least macOS Sierra 10.12 or newer macOS such as Mojave.
 
-### Python
+### Python / Dependencies
 
-Have Python 3 on your computer.
+Have Python 3 on your computer. Install `yaml` if you don't have it already:
+
+```
+pip install pyyaml
+```
 
 ### AWS Credentials
 
