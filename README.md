@@ -49,11 +49,11 @@ $ tree
 .
 ├── config
 │   └── jobs.template.yml
+├── seqc-progress.sh
 ├── seqc-submit.sh
 ├── seqc_submit_mjobs.py
-└── show-ami-list.sh
-
-1 directory, 4 files
+├── show-ami-list.sh
+└── version.sh
 ```
 
 ## How to Submit Multiple Jobs to AWS (Multiple Samples)
@@ -106,7 +106,7 @@ jobs:
     star-args: "runRNGseed=0"
 ```
 
-Note that you must specify which SEQC AMI (Amazon Machine Image) to use via `ami-id`. If you do not know the AMI ID, you can run `show-ami-list.sh`. The recommended AMI (as of October 24, 2020) is `ami-0bfdaae9bb0af465e`.
+Note that you must specify which SEQC AMI (Amazon Machine Image) to use via `ami-id`. If you do not know the AMI ID, you can run `show-ami-list.sh`. The recommended AMI (as of June 30, 2021) is `ami-0c97def6c08694a9a`.
 
 ```bash
 $ ./show-ami-list.sh
