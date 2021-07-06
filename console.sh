@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source version.sh
+source config.sh
 
 usage()
 {

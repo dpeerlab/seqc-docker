@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source version.sh
+source config.sh
 
-docker build -t seqc:${version} .
+docker build -t ${image_name}:${version} .

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source version.sh
+source config.sh
 
 docker_img_name="hisplan/seqc:${version}"
 

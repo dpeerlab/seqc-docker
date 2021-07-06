@@ -53,7 +53,7 @@ $ tree
 ├── seqc-submit.sh
 ├── seqc_submit_mjobs.py
 ├── show-ami-list.sh
-└── version.sh
+└── config.sh
 ```
 
 ## How to Submit Multiple Jobs to AWS (Multiple Samples)
