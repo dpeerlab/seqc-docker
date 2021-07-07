@@ -5,12 +5,12 @@ LABEL maintainer="Jaeyoung Chun (chunj@mskcc.org)" \
       version.star="2.5.3a" \
       version.samtools="1.10" \
       source.seqc="https://github.com/dpeerlab/seqc/releases/tag/v0.2.9" \
-      source.star="https://github.com/alexdobin/STAR/releases/tag/2.7.6a" \
+      source.star="https://github.com/alexdobin/STAR/releases/tag/2.5.3a" \
       source.samtools="https://github.com/samtools/samtools/releases/tag/1.10"
 
 ENV SEQC_VERSION 0.2.9
 ENV MINICONDA_VERSION 4.8.3
-ENV STAR_VERSION 2.7.6a
+ENV STAR_VERSION 2.5.3a
 ENV SAMTOOLS_VERSION 1.10
 
 ENV LC_ALL en_US.utf-8
