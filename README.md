@@ -260,24 +260,18 @@ ChildProcessError: cat: ./seqc_log.txt: No such file or directory
 
 ## Development
 
-### Building Docker Images
-
-Building local image:
+### Building Container Image
 
 ```bash
-$ ./build.sh
+./build.sh
 ```
 
-Building Cromwell-compatible image:
+### Pushing to Docker Registry
+
+Either you can use the `docker push` command or run `push.sh` (requires [SCING](https://github.com/hisplan/scing)):
 
 ```bash
-$ ./package-for-cromwell.sh
-```
-
-Bulding a deployable package for external users:
-
-```bash
-$ ./package-for-outsider.sh
+./push.sh
 ```
 
 ### Debugging through Console
