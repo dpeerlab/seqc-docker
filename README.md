@@ -39,7 +39,7 @@ _Note that the steps described here are only tested on Mac._
 Run the following commands from your Bash terminal:
 
 ```bash
-aws s3 cp s3://dp-lab-home/software/install-seqc-0.2.9.sh - | bash
+aws s3 cp s3://dp-lab-home/software/install-seqc-0.2.10.sh - | bash
 ```
 
 If you run `tree`, you should see something like this:
@@ -106,7 +106,7 @@ jobs:
     star-args: "runRNGseed=0"
 ```
 
-Note that you must specify which SEQC AMI (Amazon Machine Image) to use via `ami-id`. If you do not know the AMI ID, you can run `show-ami-list.sh`. The recommended AMI (as of June 30, 2021) is `ami-0c97def6c08694a9a`.
+Note that you must specify which SEQC AMI (Amazon Machine Image) to use via `ami-id`. If you do not know the AMI ID, you can run `show-ami-list.sh`. The recommended AMI (as of Aug 26, 2021) is `ami-0fa8f038a73ccd865`.
 
 ```bash
 $ ./show-ami-list.sh
@@ -130,6 +130,10 @@ $ ./show-ami-list.sh
     {
         "ID": "ami-0f7bddb56c574069c",
         "Name": "seqc-v0.2.7_a3"
+    },
+    {
+        "ID": "ami-0fa8f038a73ccd865",
+        "Name": "seqc-v0.2.10_a1"
     }
 ]
 ```
