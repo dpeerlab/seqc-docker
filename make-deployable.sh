@@ -36,7 +36,7 @@ mkdir -p ${dest}
 # create a temporary directory and copy files
 path_workdir=`mktemp -d`
 mkdir -p ${path_workdir}/seqc-${version}
-cp ${files} ${path_workdir}/seqc-${version}/
+rsync -Rv ${files} ${path_workdir}/seqc-${version}/
 
 # tar-gzip
 cd ${path_workdir}
