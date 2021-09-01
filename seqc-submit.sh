@@ -2,7 +2,7 @@
 
 source config.sh
 
-docker_img_name="hisplan/seqc:${version}"
+docker_img_name="${registry}/${image_name}:${version}"
 
 usage()
 {
