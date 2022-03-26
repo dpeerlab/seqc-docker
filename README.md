@@ -36,10 +36,22 @@ $ chmod 400 /path/my-key.pem
 
 _Note that the steps described here are only tested on Mac._
 
+Pull the docker image from Docker Hub:
+
+```bash
+docker pull quay.io/hisplan/seqc:0.2.11
+```
+
+```
+$ docker images
+REPOSITORY                            TAG                       IMAGE ID       CREATED         SIZE
+quay.io/hisplan/seqc                  0.2.11                     604ba1ae0d17   3 minutes ago   2.75GB
+```
+
 Run the following commands from your Bash terminal:
 
 ```bash
-aws s3 cp s3://dp-lab-home/software/install-seqc-0.2.10.sh - | bash
+aws s3 cp s3://dp-lab-home/software/install-seqc-0.2.11.sh - | bash
 ```
 
 If you run `tree`, you should see something like this:
@@ -111,6 +123,10 @@ Note that you must specify which SEQC AMI (Amazon Machine Image) to use via `ami
 ```bash
 $ ./show-ami-list.sh
 [
+    {
+        "ID": "ami-02f92579154b6edf8",
+        "Name": "seqc-v0.2.11_a1"
+    },
     {
         "ID": "ami-0530a8e9d69e60500",
         "Name": "seqc-v0.2.4_a1"
